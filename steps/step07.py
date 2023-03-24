@@ -6,10 +6,10 @@ class Variable:
         self.data = data
         self.grad = None
         self.creator = None
-    
+
     def set_creator(self, func):
         self.creator = func
-    
+
     def backward(self):
         f = self.creator
         if f is not None:

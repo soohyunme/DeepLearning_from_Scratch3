@@ -10,10 +10,10 @@ class Variable:
         self.data = data
         self.grad = None
         self.creator = None
-    
+
     def set_creator(self, func):
         self.creator = func
-    
+
     def backward(self):
         if self.grad is None:
             self.grad = np.ones_like(self.data)
@@ -98,7 +98,16 @@ class SquareTest(unittest.TestCase):
         x = Variable(np.array(3.0))
         y = square(x)
         y.backward()
-        expected = 
+        expected = np.array(6.0)
+        self.assertEqual(x.grad, expected)
+
+    def test_gradient_check(self):
+        x = Variable(np.random.rand(1))
+        y = square(x)
+        y.backward()
+        num_grad = numerical_diff(square, x)
+        flg = np.allclose(x.grad, num_grad)
+        self.assertTrue(flg)
 
 
 unittest.main()

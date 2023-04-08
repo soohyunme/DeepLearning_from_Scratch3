@@ -247,7 +247,7 @@ def setup_variable():
     Variable.__radd__ = add
     Variable.__neg__ = neg
     Variable.__sub__ = sub
-    Variable.__rsub__ = sub
+    Variable.__rsub__ = rsub
     Variable.__truediv__ = div
     Variable.__rtruediv__ = rdiv
     Variable.__pow__ = pow
